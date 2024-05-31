@@ -5,56 +5,38 @@ public:
     Similarity similarity;
 };
 
-TEST_F(SimilarityFixture, MatchedLength) {
-    int actual = 0;
-    actual = similarity.checker("ABC", "DEF");
-    EXPECT_EQ(actual, 60);
+TEST_F(SimilarityFixture, MatchedLengthAndNotSameAlpha) {
+    EXPECT_EQ(similarity.checker("ABC", "DEF"), 60);
 }
 
-TEST_F(SimilarityFixture, diffDoubleLength1) {
-    int actual = 0;
-    actual = similarity.checker("ABCDEF", "DEF");
-    EXPECT_EQ(actual, 0);
+TEST_F(SimilarityFixture, diffDoubleLength1AndPartialAlpha) {
+    EXPECT_EQ(similarity.checker("ABCDEF", "DEF"), 20);
 }
 
-TEST_F(SimilarityFixture, diffDoubleLength2) {
-    int actual = 0;
-    actual = similarity.checker("ABC", "DEFGHI");
-    EXPECT_EQ(actual, 0);
+TEST_F(SimilarityFixture, diffDoubleLength2AndNotSameAlpha) {
+    EXPECT_EQ(similarity.checker("ABC", "DEFGHI"), 0);
 }
 
-TEST_F(SimilarityFixture, diffLength1) {
-    int actual = 0;
-    actual = similarity.checker("ABC", "DEFGH");
-    EXPECT_EQ(actual, 20);
+TEST_F(SimilarityFixture, diffLength1AndNotSameAlpha) {
+    EXPECT_EQ(similarity.checker("ABC", "DEFGH"), 20);
 }
 
-TEST_F(SimilarityFixture, diffLength2) {
-    int actual = 0;
-    actual = similarity.checker("ABCDE", "CDE");
-    EXPECT_EQ(actual, 20);
+TEST_F(SimilarityFixture, diffLength2AndPartialAlpha) {
+    EXPECT_EQ(similarity.checker("ABCDE", "CDE"), 44);
 }
 
-TEST_F(SimilarityFixture, sameAlpha) {
-    int actual = 0;
-    actual = similarity.alphachecker("ASD", "DSA");
-    EXPECT_EQ(actual, 40);
+TEST_F(SimilarityFixture, sameLengthAndSameAlpha) {
+    EXPECT_EQ(similarity.checker("ASD", "DSA"), 100);
 }
 
-TEST_F(SimilarityFixture, NotSameAlpha) {
-    int actual = 0;
-    actual = similarity.alphachecker("A", "BB");
-    EXPECT_EQ(actual, 0);
+TEST_F(SimilarityFixture, diffDoubleLengthAndNotSameAlpha) {
+    EXPECT_EQ(similarity.checker("A", "BB"), 0);
 }
 
-TEST_F(SimilarityFixture, sameAlpha2) {
-    int actual = 0;
-    actual = similarity.alphachecker("AAABB", "BA");
-    EXPECT_EQ(actual, 40);
+TEST_F(SimilarityFixture, diffDoubleLengthAndSameAlpha2) {
+    EXPECT_EQ(similarity.checker("AAABB", "BA"), 40);
 }
 
-TEST_F(SimilarityFixture, partialSameAlpha) {
-    int actual = 0;
-    actual = similarity.alphachecker("AA", "AAE");
-    EXPECT_EQ(actual, 20);
+TEST_F(SimilarityFixture, diffLengthAndPartialSameAlpha) {
+    EXPECT_EQ(similarity.checker("AA", "AAE"), 50);
 }
