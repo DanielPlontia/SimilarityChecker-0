@@ -22,3 +22,15 @@ TEST_F(SimilarityFixture, diffDoubleLength2) {
     actual = similarity.checker("ABC", "DEFGHI");
     EXPECT_EQ(actual, 0);
 }
+
+TEST_F(SimilarityFixture, diffLength1) {
+    int actual = 0;
+    actual = similarity.checker("ABC", "DEFGH");
+    EXPECT_EQ(actual, 20);
+}
+
+TEST_F(SimilarityFixture, diffLength2) {
+    int actual = 0;
+    actual = similarity.checker("ABCDE", "CDE");
+    EXPECT_EQ(actual, 20);
+}
