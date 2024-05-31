@@ -34,3 +34,27 @@ TEST_F(SimilarityFixture, diffLength2) {
     actual = similarity.checker("ABCDE", "CDE");
     EXPECT_EQ(actual, 20);
 }
+
+TEST_F(SimilarityFixture, sameAlpha) {
+    int actual = 0;
+    actual = similarity.alphachecker("ASD", "DSA");
+    EXPECT_EQ(actual, 40);
+}
+
+TEST_F(SimilarityFixture, NotSameAlpha) {
+    int actual = 0;
+    actual = similarity.alphachecker("A", "BB");
+    EXPECT_EQ(actual, 0);
+}
+
+TEST_F(SimilarityFixture, sameAlpha2) {
+    int actual = 0;
+    actual = similarity.alphachecker("AAABB", "BA");
+    EXPECT_EQ(actual, 40);
+}
+
+TEST_F(SimilarityFixture, partialSameAlpha) {
+    int actual = 0;
+    actual = similarity.alphachecker("AA", "AAE");
+    EXPECT_EQ(actual, 20);
+}
